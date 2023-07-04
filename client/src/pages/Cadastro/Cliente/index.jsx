@@ -2,97 +2,12 @@ import styled from "styled-components";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const StyledClient = styled.div`
+const Tela = styled.div`
   height: 100vh;
 
   display: flex;
   justify-content: center;
   align-items: center;
-
-  .ficha {
-    background-color: gray;
-
-    height: 45em;
-    width: 2rem;
-  }
-`;
-
-const Forms = styled.div`
-  height: 70vh;
-  width: 50vw;
-  
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-
-  padding: 1.5rem;
-  border-radius: 1em;
-  border: 1px solid #cfcfcf;
-  
-  background-color: #e9e9e9;
-
-  p {
-    white-space: nowrap;
-  }
-
-  .cliente-info {
-    display: block;
-    padding: .5rem;
-    width: 100%;
-    background-color: white;
-
-    border-radius: 10px;
-    border: 1px solid #cfcfcf;
-  }
-
-  .input-1 {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 10px;
-  }
-
-  .input-2 {
-    display: grid;
-    grid-template-columns: 3fr 2fr;
-    gap: 10px;
-  }
-
-  .input-3 {
-    display: grid;
-    grid-template-columns: 1fr 2fr 2fr;
-    gap: 10px;
-  }
-
-  .input-4 {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 10px;
-  }
-
-  .checkbox {
-    display: flex;
-    align-items: center;
-    width: 4.3rem;
-
-
-    input {
-      height: 1em;
-    }
-  }
-
-  button {
-    height: 3.5rem;
-    border-radius: 10px;
-    border: 1px solid #cfcfcf;
-    background-color: #6dad73;
-    
-    color: #FFFFFF;
-    font-weight: bold;
-
-    &:hover {
-      background-color: #609966;
-    }
-  }
 `;
 
 export default function Cliente() {
@@ -114,86 +29,116 @@ export default function Cliente() {
 
     console.log(cliente)
     return (
-        <StyledClient>
-            <Forms>
-                <div className="input-2">
-                    <div>
-                        <p>Razão Social</p>
-                        <span className="cliente-info">{cliente.rzSocial}</span>
-                    </div>
-                    <div>
-                        <p>Nome Fantasia (Apelido)</p>
-                        <span className="cliente-info">{cliente.nmFantasia}</span>
+        <Tela>
+            <div className="container rounded-5">
+                <div className="row justify-content-center align-items-center">
+                    <div className="col-md-6 bg-body-tertiary">
+                        <div className="mt-5 p-5">
+                            <div className="form-group">
+                                <div className="row">
+                                    <div className="col">
+                                        <label htmlFor="rzSocial">Razão Social</label>
+                                        <div className="bg-white p-2 border rounded-2 uppercase">{cliente.rzSocial}</div>
+                                    </div>
+                                    <div className="col">
+                                        <label htmlFor="nmFantasia">Nome Fantasia</label>
+                                        <div className="bg-white p-2 border rounded-2 uppercase">{cliente.nmFantasia}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="form-group">
+                                <div className="row">
+                                    <div className="col">
+                                        <label htmlFor="endereco">Endereço</label>
+                                        <div className="bg-white p-2 border rounded-2 uppercase">{cliente.endereco}</div>
+                                    </div>
+                                    <div className="col">
+                                        <label htmlFor="numero">Número</label>
+                                        <div className="bg-white p-2 border rounded-2 uppercase">{cliente.numero}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="form-group">
+                                <div className="row">
+                                    <div className="col">
+                                        <label htmlFor="bairro">Bairro</label>
+                                        <div className="bg-white p-2 border rounded-2 uppercase">{cliente.bairro}</div>
+                                    </div>
+                                    <div className="col">
+                                        <label htmlFor="compEndereco">Comp. Endereço</label>
+                                        <div className="bg-white p-2 border rounded-2 uppercase">{cliente.compEndereco}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="form-group">
+                                <div className="row">
+                                    <div className="col">
+                                        <label htmlFor="estado">Estado</label>
+                                        <div className="bg-white p-2 border rounded-2 uppercase">{cliente.estado}</div>
+                                    </div>
+                                    <div className="col">
+                                        <label htmlFor="cidade">Cidade</label>
+                                        <div className="bg-white p-2 border rounded-2 uppercase">{cliente.cidade}</div>
+                                    </div>
+                                    <div className="col">
+                                        <label htmlFor="CEP">CEP</label>
+                                        <div className="bg-white p-2 border rounded-2 uppercase">{cliente.cep}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="form-group">
+                                <div className="row">
+                                    <div className="col">
+                                        <label htmlFor="fones">Telefones</label>
+                                        <div className="bg-white p-2 border rounded-2 uppercase">{cliente.fones}</div>
+                                    </div>
+                                    <div className="col">
+                                        <label htmlFor="email">E-mail</label>
+                                        <div className="bg-white p-2 border rounded-2 uppercase">{cliente.email}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="form-group">
+                                <div className="row">
+                                    <div className="col">
+                                        <label htmlFor="RG">RG</label>
+                                        <div className="bg-white p-2 border rounded-2 uppercase">{cliente.rg}</div>
+                                    </div>
+                                    <div className="col">
+                                        <label htmlFor="CNPJ">CPF / CNPJ</label>
+                                        <div className="bg-white p-2 border rounded-2 uppercase">{cliente.cnpj}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="form-group">
+                                <div className="row">
+                                    <div className="col d-flex align-items-center justify-content-center">
+                                        <div className="form-check w-100">
+                                            <label>Atividade:</label>
+                                            {
+                                                cliente.inativo === 0 ? (
+                                                    <div className="p-2 text-light text-center rounded-2 bg-success">ATIVO</div>
+                                                ) : (
+                                                    <div className="p-2 text-light text-center rounded-2 bg-danger">INATIVO</div>
+                                                )
+                                            }
+                                        </div>
+                                    </div>
+                                    <div className="col">
+                                        <label htmlFor="setor">Setor/Profissão</label>
+                                        <div className="bg-white p-2 border rounded-2 uppercase">{cliente.setor}</div>
+                                    </div>
+                                    <div className="col">
+                                        <label htmlFor="inscEstadual">Insc. Estadual</label>
+                                        <div className="bg-white p-2 border rounded-2 uppercase">{cliente.inscEstadual}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div className="input-1">
-                    <div>
-                        <p>Endereço</p>
-                        <span className="cliente-info">{cliente.endereco}</span>
-                    </div>
-                    <div>
-                        <p>Número</p>
-                        <span className="cliente-info">{cliente.numero}</span>
-                    </div>
-                </div>
-                <div className="input-4">
-                    <div>
-                        <p>Bairro</p>
-                        <span className="cliente-info">{cliente.numero}</span>
-                    </div>
-                    <div>
-                        <p>Complemento do Endereço</p>
-                        <span className="cliente-info">{cliente.compEndereco}</span>
-                    </div>
-                </div>
-                <div className="input-3">
-                    <div>
-                        <p>Estado</p>
-                        <span className="cliente-info">{cliente.estado}</span>
-                    </div>
-                    <div>
-                        <p>Cidade</p>
-                        <span className="cliente-info">{cliente.cidade}</span>
-                    </div>
-                    <div>
-                        <p>CEP</p>
-                        <span className="cliente-info">{cliente.cep}</span>
-                    </div>
-                </div>
-                <div className="input-2">
-                    <div>
-                        <p>Telefones</p>
-                        <span className="cliente-info">{cliente.fones}</span>
-                    </div>
-                    <div>
-                        <p>E-mail</p>
-                        <span className="cliente-info">{cliente.email}</span>
-                    </div>
-                </div>
-                <div className="input-2">
-                    <div>
-                        <p>RG</p>
-                        <span className="cliente-info">{cliente.rg}</span>
-                    </div>
-                    <div>
-                        <p>CPF / CNPJ</p>
-                        <span className="cliente-info">{cliente.cnpj}</span>
-                    </div>
-                </div>
-                <div className="input-3">
-                    <div className="activity">
-                        <p>Inativo</p>
-                    </div>
-                    <div>
-                        <p>Setor/Profissão</p>
-                        <span className="cliente-info">{cliente.setor}</span>
-                    </div>
-                    <div>
-                        <p>Inscrição Estadual</p>
-                        <span className="cliente-info">{cliente.inscEstadual}</span>
-                    </div>
-                </div>
-            </Forms>
-        </StyledClient>
+            </div>
+
+        </Tela>
     )
 }

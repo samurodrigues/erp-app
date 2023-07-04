@@ -2,10 +2,10 @@ import { Link } from "react-router-dom"
 
 export default function Dropdown({ submenus }) {
   return(
-    <ul className="dropdown">
+    <ul className="dropdown-menu">
       {submenus.map((submenu, index) => (
-        <li key={index} className="dropdown-item">
-          <Link className="dropdown-content" to={submenu.url}>{submenu.title}</Link>
+        <li key={index}>
+          <Link className="dropdown-item" to={submenu.url}>{submenu.title}</Link>
         </li>
       ))}
     </ul>

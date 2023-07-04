@@ -1,3 +1,16 @@
 body {
     height: 100%;
 }
+
+#navbar-sistem {
+    width: 100%;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
