@@ -27,7 +27,6 @@ export default function Cliente() {
             .catch(error => console.error("Erro ao buscar os dados: ", error))
     }, []);
 
-    console.log(cliente)
     return (
         <Tela>
             <div className="container rounded-5">

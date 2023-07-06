@@ -15,8 +15,9 @@ const Tela = styled.div`
 
 export default function Clientes() {
   const [registers, setRegisters] = useState([]);
-
   const [filter, setFilter] = useState('todos');
+  const [busca, setBusca] = useState('');
+
   const handleChange = (event) => {
     setFilter(event.target.value);
   }
@@ -35,12 +36,15 @@ export default function Clientes() {
       ? registers.filter(cadastro => cadastro.inativo === 1)
       : registers;
 
+  const filteredClientes = filteredRegisters.filter(cliente => cliente.rzSocial.toUpperCase().startsWith(busca.toUpperCase()));
+
+
   return (
     <>
       <Tela>
-        <div className="d-flex align-items-center">
-          <div className="p-3 rounded-5 bg-light mb-3" id="filter">
-            <div className="form-check form-check-inline">
+        <div>
+          <div className="p-3 rounded-5 bg-light mb-3 d-flex" id="filter">
+            <div className="form-check form-check-inline d-flex align-items-center w-25">
               <input
                 type="radio"
                 name="filter"
@@ -51,7 +55,7 @@ export default function Clientes() {
               />
               <label htmlFor="todos-input">Todos</label>
             </div>
-            <div className="form-check form-check-inline">
+            <div className="form-check form-check-inline d-flex align-items-center">
               <input
                 type="radio"
                 name="filter"
@@ -62,7 +66,7 @@ export default function Clientes() {
               />
               <label htmlFor="ativos-input">Ativos</label>
             </div>
-            <div className="form-check form-check-inline">
+            <div className="form-check form-check-inline d-flex align-items-center">
               <input
                 type="radio"
                 name="filter"
@@ -74,27 +78,42 @@ export default function Clientes() {
               <label htmlFor="inativos-input">Inativos</label>
             </div>
           </div>
-
-          <button onClick={(e) => clientesPDF(filteredRegisters)} className="p-1 pt-1 px-3 ms-4 mb-2 bg-danger rounded-4 border-0"><i className="bi bi-filetype-pdf text-white fs-4"></i></button>
         </div>
 
-        <div className="container bg-light p-5 rounded-5">
+        <div className="container bg-light p-4 rounded-5 w-75">
           <table className="table table-striped table-hover">
             <thead>
               <tr>
                 <th scope="col">Razão Social</th>
-                <th scope="col">Atividade</th>
               </tr>
             </thead>
             <tbody>
-              {filteredRegisters.map(cadastro => (
-                <tr>
+              {filteredClientes.map(cadastro => (
+                <tr key={cadastro.idcadastro}>
                   <td><Link className="nav-link uppercase" to={`http://localhost:5173/cadastro/cliente/${cadastro.idcadastro}`}>{cadastro.rzSocial}</Link></td>
-                  <td>{cadastro.inativo === 1 ? 'INATIVO' : 'ATIVO'}</td>
                 </tr>
               ))}
             </tbody>
           </table>
+        </div>
+
+        <div className="d-flex mt-3">
+          <div className="input-group mb-3 ms-4">
+            <span className="input-group-text"><i className="bi bi-search"></i></span>
+            <div className="form-floating overflow-hidden">
+              <input
+                type="text"
+                className="form-control"
+                id="floatingInputGroup1"
+                placeholder="Digite o Cliente/Fornecedor"
+                value={busca}
+                onChange={(e) => setBusca(e.target.value)}
+              />
+              <label htmlFor="floatingInputGroup1">Pesquise</label>
+            </div>
+          </div>
+
+          <button onClick={(e) => clientesPDF(filteredClientes)} className="align-self-center mb-2 h-25 p-2 ms-4 bg-danger rounded-4 border-0"><i className="bi bi-filetype-pdf text-white fs-4"></i></button>
         </div>
       </Tela>
     </>

@@ -25,7 +25,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/cadastro", (req, res) => {
-  const query = "SELECT * FROM cadastro LIMIT 10";
+  const query = "SELECT * FROM cadastro";
   db.query(query, (err, rows) => {
     if (err) {
       console.error("Erro ao executar a consulta:", err);
